@@ -1,6 +1,6 @@
 //
 //  AppDelegate.h
-//  DeleteLabel
+//  htmlLabel
 //
 //  Created by Zhenglinqin on 15/6/8.
 //  Copyright (c) 2015年 Binglin. All rights reserved.

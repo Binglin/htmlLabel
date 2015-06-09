@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		569BD61A1B2562B5005D7F32 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD6191B2562B5005D7F32 /* main.m */; };
-		569BD61D1B2562B5005D7F32 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD61C1B2562B5005D7F32 /* AppDelegate.m */; };
-		569BD6201B2562B5005D7F32 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD61F1B2562B5005D7F32 /* ViewController.m */; };
-		569BD6231B2562B5005D7F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 569BD6211B2562B5005D7F32 /* Main.storyboard */; };
-		569BD6251B2562B5005D7F32 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 569BD6241B2562B5005D7F32 /* Images.xcassets */; };
-		569BD6281B2562B5005D7F32 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569BD6261B2562B5005D7F32 /* LaunchScreen.xib */; };
 		569BD6341B2562B6005D7F32 /* DeleteLabelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD6331B2562B6005D7F32 /* DeleteLabelTests.m */; };
+		569BD6461B2584D6005D7F32 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569BD6451B2584D6005D7F32 /* CoreText.framework */; };
+		569BD6701B25AB09005D7F32 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD6611B25AB09005D7F32 /* AppDelegate.m */; };
+		569BD6711B25AB09005D7F32 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569BD6631B25AB09005D7F32 /* LaunchScreen.xib */; };
+		569BD6721B25AB09005D7F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 569BD6651B25AB09005D7F32 /* Main.storyboard */; };
+		569BD6741B25AB09005D7F32 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 569BD6691B25AB09005D7F32 /* Images.xcassets */; };
+		569BD6751B25AB09005D7F32 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569BD66A1B25AB09005D7F32 /* Info.plist */; };
+		569BD6761B25AB09005D7F32 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD66B1B25AB09005D7F32 /* main.m */; };
+		569BD6771B25AB09005D7F32 /* UILabel+htmlText.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD66D1B25AB09005D7F32 /* UILabel+htmlText.m */; };
+		569BD6781B25AB09005D7F32 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD66F1B25AB09005D7F32 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +30,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		569BD6141B2562B5005D7F32 /* DeleteLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeleteLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		569BD6181B2562B5005D7F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		569BD6191B2562B5005D7F32 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		569BD61B1B2562B5005D7F32 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		569BD61C1B2562B5005D7F32 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		569BD61E1B2562B5005D7F32 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		569BD61F1B2562B5005D7F32 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		569BD6221B2562B5005D7F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		569BD6241B2562B5005D7F32 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		569BD6271B2562B5005D7F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		569BD62D1B2562B6005D7F32 /* DeleteLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeleteLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		569BD6141B2562B5005D7F32 /* htmlLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htmlLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		569BD62D1B2562B6005D7F32 /* htmlLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = htmlLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		569BD6321B2562B6005D7F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		569BD6331B2562B6005D7F32 /* DeleteLabelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteLabelTests.m; sourceTree = "<group>"; };
+		569BD6451B2584D6005D7F32 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		569BD6601B25AB09005D7F32 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = htmlLabel/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		569BD6611B25AB09005D7F32 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = htmlLabel/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		569BD6641B25AB09005D7F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		569BD6661B25AB09005D7F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		569BD6691B25AB09005D7F32 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = htmlLabel/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		569BD66A1B25AB09005D7F32 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = htmlLabel/Info.plist; sourceTree = SOURCE_ROOT; };
+		569BD66B1B25AB09005D7F32 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = htmlLabel/main.m; sourceTree = SOURCE_ROOT; };
+		569BD66C1B25AB09005D7F32 /* UILabel+htmlText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+htmlText.h"; path = "htmlLabel/UILabel+htmlText.h"; sourceTree = SOURCE_ROOT; };
+		569BD66D1B25AB09005D7F32 /* UILabel+htmlText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+htmlText.m"; path = "htmlLabel/UILabel+htmlText.m"; sourceTree = SOURCE_ROOT; };
+		569BD66E1B25AB09005D7F32 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = htmlLabel/ViewController.h; sourceTree = SOURCE_ROOT; };
+		569BD66F1B25AB09005D7F32 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = htmlLabel/ViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				569BD6461B2584D6005D7F32 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +70,8 @@
 		569BD60B1B2562B5005D7F32 = {
 			isa = PBXGroup;
 			children = (
-				569BD6161B2562B5005D7F32 /* DeleteLabel */,
+				569BD6451B2584D6005D7F32 /* CoreText.framework */,
+				569BD6161B2562B5005D7F32 /* htmlLabel */,
 				569BD6301B2562B6005D7F32 /* DeleteLabelTests */,
 				569BD6151B2562B5005D7F32 /* Products */,
 			);
@@ -72,34 +80,25 @@
 		569BD6151B2562B5005D7F32 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				569BD6141B2562B5005D7F32 /* DeleteLabel.app */,
-				569BD62D1B2562B6005D7F32 /* DeleteLabelTests.xctest */,
+				569BD6141B2562B5005D7F32 /* htmlLabel.app */,
+				569BD62D1B2562B6005D7F32 /* htmlLabelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		569BD6161B2562B5005D7F32 /* DeleteLabel */ = {
+		569BD6161B2562B5005D7F32 /* htmlLabel */ = {
 			isa = PBXGroup;
 			children = (
-				569BD61B1B2562B5005D7F32 /* AppDelegate.h */,
-				569BD61C1B2562B5005D7F32 /* AppDelegate.m */,
-				569BD61E1B2562B5005D7F32 /* ViewController.h */,
-				569BD61F1B2562B5005D7F32 /* ViewController.m */,
-				569BD6211B2562B5005D7F32 /* Main.storyboard */,
-				569BD6241B2562B5005D7F32 /* Images.xcassets */,
-				569BD6261B2562B5005D7F32 /* LaunchScreen.xib */,
-				569BD6171B2562B5005D7F32 /* Supporting Files */,
+				569BD6601B25AB09005D7F32 /* AppDelegate.h */,
+				569BD6611B25AB09005D7F32 /* AppDelegate.m */,
+				569BD66C1B25AB09005D7F32 /* UILabel+htmlText.h */,
+				569BD66D1B25AB09005D7F32 /* UILabel+htmlText.m */,
+				569BD66E1B25AB09005D7F32 /* ViewController.h */,
+				569BD66F1B25AB09005D7F32 /* ViewController.m */,
+				569BD6791B25AB11005D7F32 /* Sourport files */,
 			);
+			name = htmlLabel;
 			path = DeleteLabel;
-			sourceTree = "<group>";
-		};
-		569BD6171B2562B5005D7F32 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				569BD6181B2562B5005D7F32 /* Info.plist */,
-				569BD6191B2562B5005D7F32 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		569BD6301B2562B6005D7F32 /* DeleteLabelTests */ = {
@@ -119,12 +118,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		569BD6621B25AB09005D7F32 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				569BD6631B25AB09005D7F32 /* LaunchScreen.xib */,
+				569BD6651B25AB09005D7F32 /* Main.storyboard */,
+			);
+			name = Base.lproj;
+			path = htmlLabel/Base.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+		569BD6791B25AB11005D7F32 /* Sourport files */ = {
+			isa = PBXGroup;
+			children = (
+				569BD6691B25AB09005D7F32 /* Images.xcassets */,
+				569BD6621B25AB09005D7F32 /* Base.lproj */,
+				569BD66A1B25AB09005D7F32 /* Info.plist */,
+				569BD66B1B25AB09005D7F32 /* main.m */,
+			);
+			name = "Sourport files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		569BD6131B2562B5005D7F32 /* DeleteLabel */ = {
+		569BD6131B2562B5005D7F32 /* htmlLabel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 569BD6371B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "DeleteLabel" */;
+			buildConfigurationList = 569BD6371B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "htmlLabel" */;
 			buildPhases = (
 				569BD6101B2562B5005D7F32 /* Sources */,
 				569BD6111B2562B5005D7F32 /* Frameworks */,
@@ -134,14 +154,14 @@
 			);
 			dependencies = (
 			);
-			name = DeleteLabel;
+			name = htmlLabel;
 			productName = DeleteLabel;
-			productReference = 569BD6141B2562B5005D7F32 /* DeleteLabel.app */;
+			productReference = 569BD6141B2562B5005D7F32 /* htmlLabel.app */;
 			productType = "com.apple.product-type.application";
 		};
-		569BD62C1B2562B6005D7F32 /* DeleteLabelTests */ = {
+		569BD62C1B2562B6005D7F32 /* htmlLabelTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 569BD63A1B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "DeleteLabelTests" */;
+			buildConfigurationList = 569BD63A1B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "htmlLabelTests" */;
 			buildPhases = (
 				569BD6291B2562B6005D7F32 /* Sources */,
 				569BD62A1B2562B6005D7F32 /* Frameworks */,
@@ -152,9 +172,9 @@
 			dependencies = (
 				569BD62F1B2562B6005D7F32 /* PBXTargetDependency */,
 			);
-			name = DeleteLabelTests;
+			name = htmlLabelTests;
 			productName = DeleteLabelTests;
-			productReference = 569BD62D1B2562B6005D7F32 /* DeleteLabelTests.xctest */;
+			productReference = 569BD62D1B2562B6005D7F32 /* htmlLabelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -175,7 +195,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 569BD60F1B2562B5005D7F32 /* Build configuration list for PBXProject "DeleteLabel" */;
+			buildConfigurationList = 569BD60F1B2562B5005D7F32 /* Build configuration list for PBXProject "htmlLabel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -188,8 +208,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				569BD6131B2562B5005D7F32 /* DeleteLabel */,
-				569BD62C1B2562B6005D7F32 /* DeleteLabelTests */,
+				569BD6131B2562B5005D7F32 /* htmlLabel */,
+				569BD62C1B2562B6005D7F32 /* htmlLabelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -199,9 +219,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569BD6231B2562B5005D7F32 /* Main.storyboard in Resources */,
-				569BD6281B2562B5005D7F32 /* LaunchScreen.xib in Resources */,
-				569BD6251B2562B5005D7F32 /* Images.xcassets in Resources */,
+				569BD6751B25AB09005D7F32 /* Info.plist in Resources */,
+				569BD6741B25AB09005D7F32 /* Images.xcassets in Resources */,
+				569BD6711B25AB09005D7F32 /* LaunchScreen.xib in Resources */,
+				569BD6721B25AB09005D7F32 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569BD6201B2562B5005D7F32 /* ViewController.m in Sources */,
-				569BD61D1B2562B5005D7F32 /* AppDelegate.m in Sources */,
-				569BD61A1B2562B5005D7F32 /* main.m in Sources */,
+				569BD6771B25AB09005D7F32 /* UILabel+htmlText.m in Sources */,
+				569BD6701B25AB09005D7F32 /* AppDelegate.m in Sources */,
+				569BD6761B25AB09005D7F32 /* main.m in Sources */,
+				569BD6781B25AB09005D7F32 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,26 +260,26 @@
 /* Begin PBXTargetDependency section */
 		569BD62F1B2562B6005D7F32 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 569BD6131B2562B5005D7F32 /* DeleteLabel */;
+			target = 569BD6131B2562B5005D7F32 /* htmlLabel */;
 			targetProxy = 569BD62E1B2562B6005D7F32 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		569BD6211B2562B5005D7F32 /* Main.storyboard */ = {
+		569BD6631B25AB09005D7F32 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				569BD6221B2562B5005D7F32 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		569BD6261B2562B5005D7F32 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				569BD6271B2562B5005D7F32 /* Base */,
+				569BD6641B25AB09005D7F32 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		569BD6651B25AB09005D7F32 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				569BD6661B25AB09005D7F32 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -349,9 +371,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = DeleteLabel/Info.plist;
+				INFOPLIST_FILE = htmlLabel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = htmlLabel;
 			};
 			name = Debug;
 		};
@@ -359,9 +382,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = DeleteLabel/Info.plist;
+				INFOPLIST_FILE = htmlLabel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = htmlLabel;
 			};
 			name = Release;
 		};
@@ -377,9 +401,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = DeleteLabelTests/Info.plist;
+				INFOPLIST_FILE = htmlLabelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = htmlLabelTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeleteLabel.app/DeleteLabel";
 			};
 			name = Debug;
@@ -392,9 +416,9 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = DeleteLabelTests/Info.plist;
+				INFOPLIST_FILE = htmlLabelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = htmlLabelTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeleteLabel.app/DeleteLabel";
 			};
 			name = Release;
@@ -402,7 +426,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		569BD60F1B2562B5005D7F32 /* Build configuration list for PBXProject "DeleteLabel" */ = {
+		569BD60F1B2562B5005D7F32 /* Build configuration list for PBXProject "htmlLabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				569BD6351B2562B6005D7F32 /* Debug */,
@@ -411,21 +435,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		569BD6371B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "DeleteLabel" */ = {
+		569BD6371B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "htmlLabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				569BD6381B2562B6005D7F32 /* Debug */,
 				569BD6391B2562B6005D7F32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		569BD63A1B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "DeleteLabelTests" */ = {
+		569BD63A1B2562B6005D7F32 /* Build configuration list for PBXNativeTarget "htmlLabelTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				569BD63B1B2562B6005D7F32 /* Debug */,
 				569BD63C1B2562B6005D7F32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
