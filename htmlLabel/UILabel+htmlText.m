@@ -88,8 +88,26 @@
             for (NSUInteger i=1; i<[textComponents count]; i++)
             {
                 NSArray *pair = [[textComponents objectAtIndex:i] componentsSeparatedByString:@"="];
+                
                 if ([pair count] > 0) {
+                    
                     NSString *key = [[pair objectAtIndex:0] lowercaseString];
+                    
+                    if ([key isEqualToString:@"style"]) {
+                        NSString *styleString = pair[1];
+                        [styleString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                        NSArray *styleAttr = [styleString componentsSeparatedByString:@";"];
+                        
+                        NSMutableDictionary *styleDic = [NSMutableDictionary dictionaryWithCapacity:styleAttr.count];
+
+                        for (NSString *styleItem in styleAttr) {
+                            NSArray *styleItemKeyValue = [styleItem componentsSeparatedByString:@":"];
+                            [styleDic setObject:styleItemKeyValue[1] forKey:styleItemKeyValue[0]];
+                        }
+                        
+                        [attributes setObject:styleDic forKey:key];
+                        continue;
+                    }
                     
                     if ([pair count]>=2) {
                         // Trim " charactere
@@ -141,7 +159,7 @@
         else if([TAG isEqualToString:@"a"]) {
             [self appleURLLink:attriText withComponent:component];
         }
-        else if([TAG isEqualToString:@"u"]) {
+        else if([TAG isEqualToString:@"u"] || [TAG isEqualToString:@"ins"]) {
             [self applyLineType:kCTUnderlineStyleSingle attrText:attriText withComponent:component];
         }
         else if([TAG isEqualToString:@"uu"]) {
@@ -152,12 +170,15 @@
         }
         else if([TAG isEqualToString:@"font"]) {
             [self setColorForAttributeStr:attriText Attribute:NSForegroundColorAttributeName component:component];
+            [self setFontSizeForAttributeStr:attriText Attribute:NSFontAttributeName component:component];
         }
         else if([TAG isEqualToString:@"p"]) {
             
         }
     }
     self.attributedText = attriText;
+    CFAttributedStringRef stringRef = (__bridge CFAttributedStringRef)(attriText);
+    
 }
 
 
@@ -202,7 +223,11 @@
 }
 
 - (void)appleURLLink:(NSMutableAttributedString *)attri  withComponent:(HTMLComponent *)component{
-    [attri addAttribute:NSLinkAttributeName value:[component.attributes[@"href"] stringByReplacingOccurrencesOfString:@"'" withString:@""] range:NSMakeRange(component.position, [component.text length])];
+//    [attri addAttribute:NSLinkAttributeName value:[component.attributes[@"href"] stringByReplacingOccurrencesOfString:@"'" withString:@""] range:NSMakeRange(component.position, [component.text length])];
+//    [self setColorForAttributeStr:attri Attribute:NSStrokeColorAttributeName component:component];
+//    [self setColorForAttributeStr:attri Attribute:NSUnderlineColorAttributeName component:component];
+//    [self setFontSizeForAttributeStr:attri Attribute:nil component:component];
+    [self applyLineType:kCTUnderlineStyleSingle attrText:attri withComponent:component];
 }
 
 - (void)applyFont:(NSMutableAttributedString *)attri  withComponent:(HTMLComponent *)component{
@@ -214,14 +239,24 @@
     if (color) {
         [attrStr addAttribute:attr value:color range:NSMakeRange(component.position, [component.text length])];
     }
-    if (component.attributes[@"size"]) {
-        CGFloat size = [component.attributes[@"size"] floatValue];
+}
+
+- (void)setFontSizeForAttributeStr:(NSMutableAttributedString  *)attrStr Attribute:(NSString  *)attr component:(HTMLComponent *)component{
+    NSString *size_st = component.attributes[@"size"];
+    if (size_st == nil) {
+        size_st = [component.attributes[@"style"] objectForKey:@"fontSize"];
+    }
+    if (size_st) {
+        CGFloat size = [size_st floatValue];
         [attrStr addAttribute:NSFontAttributeName  value:[UIFont systemFontOfSize:size] range:NSMakeRange(component.position, [component.text length])];
     }
-   
 }
+
 - (UIColor *)getComponentColor:(HTMLComponent *)component{
     NSString *colorText = component.attributes[@"color"];
+    if (colorText == nil) {
+        colorText = [component.attributes[@"style"] objectForKey:@"color"];
+    }
     colorText = [colorText stringByReplacingOccurrencesOfString:@"'" withString:@""];
     if (colorText)
     {

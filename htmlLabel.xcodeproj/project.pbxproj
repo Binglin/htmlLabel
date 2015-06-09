@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		569BD6341B2562B6005D7F32 /* DeleteLabelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD6331B2562B6005D7F32 /* DeleteLabelTests.m */; };
 		569BD6461B2584D6005D7F32 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569BD6451B2584D6005D7F32 /* CoreText.framework */; };
 		569BD6701B25AB09005D7F32 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569BD6611B25AB09005D7F32 /* AppDelegate.m */; };
 		569BD6711B25AB09005D7F32 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569BD6631B25AB09005D7F32 /* LaunchScreen.xib */; };
@@ -33,7 +32,6 @@
 		569BD6141B2562B5005D7F32 /* htmlLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htmlLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569BD62D1B2562B6005D7F32 /* htmlLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = htmlLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		569BD6321B2562B6005D7F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		569BD6331B2562B6005D7F32 /* DeleteLabelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteLabelTests.m; sourceTree = "<group>"; };
 		569BD6451B2584D6005D7F32 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		569BD6601B25AB09005D7F32 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = htmlLabel/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		569BD6611B25AB09005D7F32 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = htmlLabel/AppDelegate.m; sourceTree = SOURCE_ROOT; };
@@ -104,7 +102,6 @@
 		569BD6301B2562B6005D7F32 /* DeleteLabelTests */ = {
 			isa = PBXGroup;
 			children = (
-				569BD6331B2562B6005D7F32 /* DeleteLabelTests.m */,
 				569BD6311B2562B6005D7F32 /* Supporting Files */,
 			);
 			path = DeleteLabelTests;
@@ -251,7 +248,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569BD6341B2562B6005D7F32 /* DeleteLabelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
