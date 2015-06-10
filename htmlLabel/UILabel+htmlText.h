@@ -51,4 +51,6 @@
 
 - (CGSize)bestSize;
 
+- (CGFloat)heightWithWidth:(CGFloat)width;
+
 @end

@@ -21,11 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSString *testSTR1 = @"<font color=\"#ff6600\" size=\"24\">29元 &nbsp;</font><font size=\"20\"><del>99元</del></font>";
+    NSString *TEST2 = @"<b>bold</b>,<i>italic</i> and <u>underlined</u> text, and <font face='HelveticaNeue-CondensedBold' size=20 color='#CCFF00'>text with custom font and color</font>";
+    
+    NSString *TEST3 = @"<font color='#99cc00' style='font-size: 13px;'>sdfrsd</font><span style='color: rgb(0, 0, 0);'><span style='font-size: 13px;'>f &nbsp; &nbsp;s</span><font size='4'>dfsdf</font></span>";
+    
     NSString *del_html = @"<font color=orange><b><strike><u>bold</u></strike></b></font>";
     NSString *bold  = @"<b>bold</b>";
     NSString *italic  = @"<i>italic</i>";
     NSString *bold_italic  = @"<bi>bold_italic</bi>";
-    NSString *link  = @"<a href='www.baidu.com' style=color:red;fontSize:30>百度</a>";
+    NSString *link  = @"<a href='www.baidu.com' style=color:\"#FF0000\";fontSize:30px>百度</a>";
     NSString *under  = @"<u>underline</u>";
 
     NSString *DoubleUnder  = @"<uu>DoubleUnder</uu>";
@@ -38,7 +43,7 @@
     
     
     
-    listData = @[link,del_html,bold,italic,bold_italic,link,under,DoubleUnder,deleteLine,insert,style,paragraph,promotion];
+    listData = @[link,testSTR1,TEST2,TEST3,link,del_html,bold,italic,bold_italic,link,under,DoubleUnder,deleteLine,insert,style,paragraph,promotion];
     
 //    del.backgroundColor = [UIColor redColor];
     [self.view addSubview:del];
@@ -57,11 +62,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     [cell.textLabel setHTMLText:listData[indexPath.row]];
+    cell.textLabel.numberOfLines = 0;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60.f;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return [cell.textLabel heightWithWidth:CGRectGetWidth(self.view.frame) - 20];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

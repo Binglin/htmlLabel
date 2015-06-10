@@ -58,6 +58,7 @@
             
             data = [data stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
             data = [data stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+            data = [data stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
         }
         
         if ([text rangeOfString:@"</"].location==0)
@@ -223,10 +224,10 @@
 }
 
 - (void)appleURLLink:(NSMutableAttributedString *)attri  withComponent:(HTMLComponent *)component{
-//    [attri addAttribute:NSLinkAttributeName value:[component.attributes[@"href"] stringByReplacingOccurrencesOfString:@"'" withString:@""] range:NSMakeRange(component.position, [component.text length])];
-//    [self setColorForAttributeStr:attri Attribute:NSStrokeColorAttributeName component:component];
-//    [self setColorForAttributeStr:attri Attribute:NSUnderlineColorAttributeName component:component];
-//    [self setFontSizeForAttributeStr:attri Attribute:nil component:component];
+    NSString *lineKey = @"URLlink";
+    [attri addAttribute:lineKey value:[component.attributes[@"href"] stringByReplacingOccurrencesOfString:@"'" withString:@""] range:NSMakeRange(component.position, [component.text length])];
+    [self setColorForAttributeStr:attri Attribute:NSForegroundColorAttributeName component:component];
+    [self setFontSizeForAttributeStr:attri Attribute:nil component:component];
     [self applyLineType:kCTUnderlineStyleSingle attrText:attri withComponent:component];
 }
 
@@ -328,6 +329,10 @@
 
 - (CGSize)bestSize{
     return [self sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame), MAXFLOAT)];
+}
+
+- (CGFloat)heightWithWidth:(CGFloat)width{
+    return [self sizeThatFits:CGSizeMake(width, MAXFLOAT)].height;
 }
 @end
 
