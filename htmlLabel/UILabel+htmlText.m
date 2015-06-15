@@ -177,9 +177,7 @@
             
         }
     }
-    self.attributedText = attriText;
-    CFAttributedStringRef stringRef = (__bridge CFAttributedStringRef)(attriText);
-    
+    self.attributedText = attriText;    
 }
 
 

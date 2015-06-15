@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "UILabel+htmlText.h"
 
+
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UILabel *del;
@@ -41,9 +42,41 @@
     NSString *style = @"style";
     NSString *promotion = @"<font size=14 color='red'>¥</font><font size=24 color=red><del>29</del></font> <font><del>¥100</del></font> ";
     
+    const char *charD = OS_STRINGIFY(<html>
+                                     <head>
+                                     <style type="text/css">
+                                     h1 {color: gray;font-size: 14px}
+                                     h6 {color: orange;font-size: 16px}
+                                     body {color:black;font-size:16px}
+                                     span {color:orange;font-size: 16px}
+                                     p {color: blue}
+                                     </style>
+                                     </head>
+                                    
+                                     <h1>购买须知</h1>
+                                     
+                                     <p><span>适用范围:</span><br>
+                                     &nbsp;&nbsp;&nbsp;&nbsp;全场通用</p>
+                                     
+                                     <p><span>有效期:</span><br>
+                                     &nbsp;&nbsp;&nbsp;&nbsp;2014-2-14至2015-12-14</p>
+                                     
+                                     <p><span>不可用日期:</span><br>
+                                     &nbsp;&nbsp;&nbsp;&nbsp;2014-2-14至2015-12-14</p>
+                                     
+                                     <p><span>适用时间:</span><br>
+                                     &nbsp;&nbsp;&nbsp;&nbsp;09:00-21:00</p>
+                                     
+                                     <p><span>使用规则:</span><br>
+                                     <table><li>无需预约 高峰时期可能需要等位</li><li>可叠加使用</li></table>
+                                     </p>
+                                     
+                                     </body>
+                                     
+                                     </html>);
+    NSString *tt = [NSString stringWithUTF8String:charD];
     
-    
-    listData = @[link,testSTR1,TEST2,TEST3,link,del_html,bold,italic,bold_italic,link,under,DoubleUnder,deleteLine,insert,style,paragraph,promotion];
+    listData = @[link,testSTR1,TEST2,TEST3,link,del_html,bold,italic,bold_italic,link,under,DoubleUnder,deleteLine,insert,style,paragraph,promotion,[tt stringByReplacingOccurrencesOfString:@"\"" withString:@"'"]];
     
 //    del.backgroundColor = [UIColor redColor];
     [self.view addSubview:del];
@@ -61,7 +94,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    [cell.textLabel setHTMLText:listData[indexPath.row]];
+    if (indexPath.row != listData.count - 1) {
+        [cell.textLabel setHTMLText:listData[indexPath.row]];
+    }else{
+        NSString *data = listData[indexPath.row];
+        NSAttributedString *attri = [[NSAttributedString alloc] initWithData:[data dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        cell.textLabel.attributedText = attri;
+    }
     cell.textLabel.numberOfLines = 0;
     return cell;
 }
