@@ -21,17 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [self.rtLabel setText:@"<small>small</small><medium>medium</medium><big>large</big><del><small><span>del</span>"/*[NSString stringWithFormat:@"<font size=16px color=p0_orange>%.0f</font><font size=10px color=p0_orange>元</font>  <s><font size=14px color=p0_gray>¥%.0f</font></s><span style='font-size:30px'> span font 30</span>",20.f,100.f]*/];
+    
     // Do any additional setup after loading the view, typically from a nib.
     NSString *testSTR1 = @"<font color=\"#ff6600\" size=\"24\">29元 &nbsp;</font><font size=\"20\"><del>99元</del></font>";
     NSString *TEST2 = @"<b>bold</b>,<i>italic</i> and <u>underlined</u> text, and <font face='HelveticaNeue-CondensedBold' size=20 color='#CCFF00'>text with custom font and color</font>";
     
-    NSString *TEST3 = @"<font color='#99cc00' style='font-size: 13px;'>sdfrsd</font><span style='color: rgb(0, 0, 0);'><span style='font-size: 13px;'>f &nbsp; &nbsp;s</span><font size='4'>dfsdf</font></span>";
+    NSString *TEST3 = @"<font color='#99cc00' style='font-size:  13px;'>sdfrsd</font><span style='color: rgb(0, 0, 0);'><span style='font-size:20px;'>f &nbsp; &nbsp;s</span><font size='4'>dfsdf</font></span>";
     
     NSString *del_html = @"<font color=orange><b><strike><u>bold</u></strike></b></font>";
     NSString *bold  = @"<b>bold</b>";
     NSString *italic  = @"<i>italic</i>";
     NSString *bold_italic  = @"<bi>bold_italic</bi>";
-    NSString *link  = @"<a href='www.baidu.com' style=color:\"#FF0000\";fontSize:30px>百度</a>";
+    NSString *link  = @"<a href='www.baidu.com'>百度</a>";//style=color:\"#FF0000\";fontSize:30px
     NSString *under  = @"<u>underline</u>";
 
     NSString *DoubleUnder  = @"<uu>DoubleUnder</uu>";
@@ -40,7 +43,11 @@
     NSString *paragraph  = @"<p>paragraph</p>";
     
     NSString *style = @"style";
-    NSString *promotion = @"<font size=14 color='red'>¥</font><font size=24 color=red><del>29</del></font> <font><del>¥100</del></font> ";
+    NSString *promotion = @"<font size=14 color='red'>¥</font><font size=24 color=red><del>29</del></font> <font><del>¥100</del></font><font size=14 color='red'>¥</font><font size=24 color=red><del>29</del></font> <font><del>¥100</del></font> ";
+    
+    NSString *htmlString = @"<small>small</small><medium>medium</medium><big>large</big><del><small><span>del</span>";
+    
+    NSAttributedString *attri = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     
     const char *charD = OS_STRINGIFY(<html>
                                      <head>
@@ -76,7 +83,7 @@
                                      </html>);
     NSString *tt = [NSString stringWithUTF8String:charD];
     
-    listData = @[link,testSTR1,TEST2,TEST3,link,del_html,bold,italic,bold_italic,link,under,DoubleUnder,deleteLine,insert,style,paragraph,promotion,[tt stringByReplacingOccurrencesOfString:@"\"" withString:@"'"]];
+    listData = @[htmlString,link,testSTR1,TEST2,TEST3,link,del_html,bold,italic,bold_italic,link,under,DoubleUnder,deleteLine,insert,style,paragraph,promotion,[tt stringByReplacingOccurrencesOfString:@"\"" withString:@"'"]];
     
 //    del.backgroundColor = [UIColor redColor];
     [self.view addSubview:del];

@@ -82,7 +82,12 @@
         else
         {
             // start of tag
-            NSArray *textComponents = [[text substringFromIndex:1] componentsSeparatedByString:@" "];
+            // trim whitespace in '' or ""
+            // start of tag
+            
+            NSString *tagInfoString = [self trimWhiteSpaceInQuot:[text substringFromIndex:1]];
+            
+            NSArray *textComponents = [tagInfoString componentsSeparatedByString:@" "];
             tag = [textComponents objectAtIndex:0];
             //NSLog(@"start of tag: %@", tag);
             NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
@@ -96,19 +101,23 @@
                     
                     if ([key isEqualToString:@"style"]) {
                         NSString *styleString = pair[1];
-                        [styleString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                       styleString = [styleString stringByReplacingOccurrencesOfString:@"'" withString:@""];
+                       styleString = [styleString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
                         NSArray *styleAttr = [styleString componentsSeparatedByString:@";"];
                         
                         NSMutableDictionary *styleDic = [NSMutableDictionary dictionaryWithCapacity:styleAttr.count];
 
                         for (NSString *styleItem in styleAttr) {
-                            NSArray *styleItemKeyValue = [styleItem componentsSeparatedByString:@":"];
-                            [styleDic setObject:styleItemKeyValue[1] forKey:styleItemKeyValue[0]];
+                            if ([styleItem length]) {
+                                NSArray *styleItemKeyValue = [styleItem componentsSeparatedByString:@":"];
+                                [styleDic setObject:styleItemKeyValue[1] forKey:styleItemKeyValue[0]];
+                            }
                         }
                         
                         [attributes setObject:styleDic forKey:key];
                         continue;
                     }
+
                     
                     if ([pair count]>=2) {
                         // Trim " charactere
@@ -122,11 +131,26 @@
                     }
                 }
             }
+            
+            
+            
             HTMLComponent *component = [HTMLComponent new];
             component.tag = tag;
             component.attributes = attributes;
             component.position = position;
             [components addObject:component];
+            
+            //标签没有end标签
+            if (textComponents.count == 1) {
+                NSString *tractText = [self scannerEndTagOfText:data ofTag:delimiter];
+                if (tractText.length > component.position) {
+                    @try {
+                        component.text = [tractText substringFromIndex:component.position];
+                    }
+                    @catch (NSException *exception) {}
+                    @finally {}
+                }
+            }
         }
         last_position = position;
     }
@@ -136,6 +160,86 @@
     assemble.pureText = data;
     
     return assemble;
+}
+
+- (NSString *)scannerEndTagOfText:(NSString *)text ofTag:(NSString *)tag{
+    
+    NSScanner *scanner = [NSScanner scannerWithString:text];
+    NSString *notEndString = @"";
+    NSString *scanString;
+    NSString *data;
+    
+    while (scanner.isAtEnd == NO) {
+        
+        NSString *before_delimeter;
+        [scanner scanUpToString:@"<" intoString:&before_delimeter];
+        
+        if (before_delimeter) {
+            notEndString = [notEndString stringByAppendingString:before_delimeter];
+            before_delimeter = nil;
+        }
+        
+        NSString *delimeter;
+        //<中的信息>
+        [scanner scanString:@"<" intoString:&scanString];
+        [scanner scanUpToString:@">" intoString:&delimeter];
+        if (delimeter) {
+            delimeter = [self trimWhiteSpaceInQuot:delimeter];
+            delimeter = [delimeter componentsSeparatedByString:@" "][0];
+        }
+        NSString *endDelimeter = [NSString stringWithFormat:@"</%@",delimeter];
+        NSRange rangeDelimiter = [text rangeOfString:endDelimeter];
+        
+        //有结束标签
+        if (rangeDelimiter.location != NSNotFound) {
+            //            text = [text stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>"] withString:@""]
+            [scanner scanUpToString:@"<" intoString:&before_delimeter];
+            if (before_delimeter) {
+                before_delimeter = [before_delimeter stringByReplacingOccurrencesOfString:@">" withString:@""];
+            }
+            return notEndString = [notEndString stringByAppendingString:before_delimeter];
+        }
+        //无结束标签
+        else{
+            [scanner scanString:@">" intoString:NULL];
+            [scanner scanUpToString:@"<" intoString:&before_delimeter];
+            if (before_delimeter) {
+                notEndString = [notEndString stringByAppendingString:before_delimeter];
+                before_delimeter = nil;
+            }
+            data = [text substringFromIndex:scanner.scanLocation];
+        }
+    }
+    
+    return notEndString.length ? notEndString : nil;
+}
+
+- (NSString *)trimWhiteSpaceInQuot:(NSString *)string{
+    NSString *tagInfo;
+    NSString *tagInfoString = string;
+    NSScanner * tapStartScanner = [NSScanner scannerWithString:tagInfoString];
+    while ([tapStartScanner scanUpToString:@"'" intoString:NULL]) {
+        [tapStartScanner scanString:@"'" intoString:NULL];
+        [tapStartScanner scanUpToString:@"'" intoString:&tagInfo];
+        if (tagInfo && [tagInfo rangeOfString:@" "].location != NSNotFound) {
+            NSString *trimWhiteSpace = [tagInfo stringByReplacingOccurrencesOfString:@" " withString:@""];
+            tagInfoString = [tagInfoString stringByReplacingOccurrencesOfString:tagInfo withString:trimWhiteSpace];
+        }
+    }
+    
+    tapStartScanner = [NSScanner scannerWithString:tagInfoString];
+    
+    while ([tapStartScanner scanUpToString:@"\"" intoString:NULL]) {
+        [tapStartScanner scanString:@"\"" intoString:NULL];
+        [tapStartScanner scanUpToString:@"\"" intoString:&tagInfo];
+        
+        if (tagInfo && [tagInfo rangeOfString:@" "].location != NSNotFound) {
+            NSString *trimWhiteSpace = [tagInfo stringByReplacingOccurrencesOfString:@" " withString:@""];
+            tagInfoString = [tagInfoString stringByReplacingOccurrencesOfString:tagInfo withString:trimWhiteSpace];
+        }
+    }
+    return tagInfoString;
+    
 }
 
 @end
@@ -175,6 +279,16 @@
         }
         else if([TAG isEqualToString:@"p"]) {
             
+        }else if ([TAG isEqualToString:@"span"]){
+            [self applySpanStyleToTxt:attriText withComponent:component];
+        }
+        else if ([TAG isEqualToString:@"small"] ||
+                 [TAG isEqualToString:@"medium"] ||
+                 [TAG isEqualToString:@"large"]){
+            NSMutableDictionary *attri = [NSMutableDictionary dictionaryWithObjectsAndKeys:TAG, @"size",nil];
+            [attri addEntriesFromDictionary:component.attributes];
+            [self setColorForAttributeStr:attriText Attribute:NSForegroundColorAttributeName component:component];
+            [self setFontSizeForAttributeStr:attriText Attribute:NSFontAttributeName component:component];
         }
     }
     self.attributedText = attriText;    
@@ -243,17 +357,48 @@
 - (void)setFontSizeForAttributeStr:(NSMutableAttributedString  *)attrStr Attribute:(NSString  *)attr component:(HTMLComponent *)component{
     NSString *size_st = component.attributes[@"size"];
     if (size_st == nil) {
-        size_st = [component.attributes[@"style"] objectForKey:@"fontSize"];
+        id style = component.attributes[@"style"];
+        if ([style isKindOfClass:[NSString class]]) {
+            
+        }
+        //span
+        else if ([style isKindOfClass:[NSDictionary class]]){
+            size_st = [component.attributes[@"style"] objectForKey:@"font-size"];
+        }
     }
     if (size_st) {
-        CGFloat size = [size_st floatValue];
+        CGFloat size = [self fontPXFromSize:size_st]; 
         [attrStr addAttribute:NSFontAttributeName  value:[UIFont systemFontOfSize:size] range:NSMakeRange(component.position, [component.text length])];
     }
+}
+
+- (void)applySpanStyleToTxt:(NSMutableAttributedString *)text withComponent:(HTMLComponent *)component{
+    //    return;
+    CFRange range = CFRangeMake(component.position, [component.text length]);
+    //    NSString *tagName = component.tagLabel;
+    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+    if (component.attributes[@"style"]) {
+        NSDictionary *style = component.attributes[@"style"];
+        if (style[@"font-size"]) {
+            [attr setObject:style[@"font-size"] forKey:@"size"];
+        }
+        if (style[@"font-face"] == nil) {
+            [attr setObject:@"Times New Roman" forKey:@"face"];
+        }
+        if (style[@"color"]) {
+            [attr setObject:style[@"color"] forKey:@"color"];
+        }
+    }
+    [self setFontSizeForAttributeStr:text Attribute:nil component:component];
 }
 
 - (UIColor *)getComponentColor:(HTMLComponent *)component{
     NSString *colorText = component.attributes[@"color"];
     if (colorText == nil) {
+        id style = component.attributes[@"style"];
+        if (style) {
+            
+        }
         colorText = [component.attributes[@"style"] objectForKey:@"color"];
     }
     colorText = [colorText stringByReplacingOccurrencesOfString:@"'" withString:@""];
@@ -270,6 +415,22 @@
             {
                 UIColor *_color = [UIColor performSelector:colorSel];
                 return _color;
+            }else if ([colorText rangeOfString:@"rgb" options:NSCaseInsensitiveSearch].location != NSNotFound){
+                NSString *colorRGBValue = [colorText componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()"]][1];
+                NSArray *rgbs = [colorRGBValue componentsSeparatedByString:@","];
+                CGFloat red   = [rgbs[0] floatValue];
+                CGFloat green = [rgbs[1] floatValue];
+                CGFloat blue  = [rgbs[2] floatValue];
+                CGFloat alpha ;
+                if (rgbs.count == 3) {
+                    
+                    alpha = 1.0f;
+                }
+                //alpha
+                else if (rgbs.count == 4){
+                    alpha = [rgbs[3] floatValue];
+                }
+                return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
             }
         }
     }
@@ -286,6 +447,37 @@
     NSInteger green = (hex & 0x00ff00) >> 8;
     NSInteger blue  = (hex & 0x0000ff);
     return [UIColor colorWithRed:red/255.f green:green/255.f blue:blue/255.f alpha:1.f];
+}
+
+
+- (CGFloat)fontPXFromSize:(NSString *)size{
+    if ([size rangeOfString:@"px" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+        return [size floatValue];
+    }else{
+        if ([size isEqualToString:@"1"]) {
+            return 9.;
+        }else if ([size isEqualToString:@"2"]) {
+            return 10.f;
+        }else if ([size isEqualToString:@"3"]) {
+            return 12.f;
+        }else if ([size isEqualToString:@"4"]) {
+            return 14.;
+        }else if ([size isEqualToString:@"5"]) {
+            return 18.f;
+        }else if ([size isEqualToString:@"6"]) {
+            return 24.f;
+        }else if ([size isEqualToString:@"small"]){
+            return 10.f;
+        }else if ([size isEqualToString:@"medium"]){
+            return 12.f;
+        }
+        else if ([size isEqualToString:@"big"]){
+            return 14.f;
+        }
+        else {
+            return 37.f;
+        }
+    }
 }
 
 
@@ -310,14 +502,6 @@
     }
     return pStype;
 }
-//
-//- (void)setLineSpace:(CGFloat)lineSpace{
-//    self.paragraphStyle.lineSpacing = lineSpace;
-//}
-//
-//- (CGFloat)lineSpace{
-//    return [self.paragraphStyle lineSpacing];
-//}
 
 - (void)layoutText{
     NSMutableAttributedString *selfAttr = [self.attributedText mutableCopy];
